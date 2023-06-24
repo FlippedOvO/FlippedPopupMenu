@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 enum PressType {
@@ -69,17 +68,6 @@ class _FPopupMenuState<T> extends State<FPopupMenu<T>> {
     final RenderBox button = context.findRenderObject()! as RenderBox;
     final RenderBox overlay =
         Navigator.of(context).overlay!.context.findRenderObject()! as RenderBox;
-    final PopupMenuPosition popupMenuPosition =
-        widget.position ?? popupMenuTheme.position ?? PopupMenuPosition.over;
-    final Offset offset;
-    switch (popupMenuPosition) {
-      case PopupMenuPosition.over:
-        offset = widget.offset;
-      case PopupMenuPosition.under:
-        offset =
-            Offset(0.0, button.size.height - (widget.padding.vertical / 2)) +
-                widget.offset;
-    }
     final RelativeRect position = RelativeRect.fromRect(
       Rect.fromPoints(
         button.localToGlobal(point!, ancestor: overlay),
@@ -184,7 +172,6 @@ class FPopupItem<T> extends PopupMenuItem<T> {
 
 class _FPopupChild extends StatelessWidget {
   const _FPopupChild({
-    super.key,
     required this.text,
     this.fontSize,
     this.fontWeight,
