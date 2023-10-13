@@ -178,6 +178,7 @@ class _FPopupChild extends StatelessWidget {
     this.fontColor,
     this.icon,
     this.iconSize,
+    this.alignment = Alignment.centerRight,
   });
 
   final String text;
@@ -188,14 +189,23 @@ class _FPopupChild extends StatelessWidget {
   final String? icon;
   final double? iconSize;
 
+  final AlignmentGeometry alignment;
+
+  bool get showIcon => icon != null;
+
   @override
   Widget build(BuildContext context) {
-    final bool showIcon = icon != null;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment:
           showIcon ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
       children: [
+        if (showIcon && alignment == Alignment.centerLeft)
+          Image.asset(
+            icon!,
+            width: iconSize,
+            height: iconSize,
+          ),
         Text(
           text,
           style: TextStyle(
@@ -204,7 +214,7 @@ class _FPopupChild extends StatelessWidget {
             fontWeight: fontWeight,
           ),
         ),
-        if (showIcon)
+        if (showIcon && alignment == Alignment.centerRight)
           Image.asset(
             icon!,
             width: iconSize,
