@@ -152,6 +152,7 @@ class FPopupItem<T> extends PopupMenuItem<T> {
     String? icon,
     double? iconSize,
     double? height,
+    AlignmentGeometry? alignment,
   })  : assert(
           !(child == null && text == null),
           'child 或 text 必须传入一项',
@@ -165,6 +166,7 @@ class FPopupItem<T> extends PopupMenuItem<T> {
                 fontColor: fontColor,
                 icon: icon,
                 iconSize: iconSize,
+                alignment: alignment ?? Alignment.centerRight,
               ),
           height: height ?? 20,
         );
